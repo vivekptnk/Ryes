@@ -18,7 +18,7 @@ struct MainTabView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
-        .accentColor(.arisePrimaryFallback)
+        .tint(.arisePrimaryFallback)
     }
 }
 

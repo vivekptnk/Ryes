@@ -15,6 +15,7 @@
 		66BB49998595B4F350C83221 /* VoiceProfilesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F62DBB6FCE4FCDCDEE28FBCA /* VoiceProfilesView.swift */; };
 		6B4D25DB661A614705C27551 /* AriseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F39144D3531F0CB58BA0EA /* AriseUITestsLaunchTests.swift */; };
 		7056B861B924F366819B48AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCD0FAF9191F42654E686CF5 /* Assets.xcassets */; };
+		7056B862B924F366819B48B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCD0FAF9191F42654E686CF6 /* LaunchScreen.storyboard */; };
 		7832163D09B0A090FE72ED45 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EB245FD35F96C8476B0961 /* Colors.swift */; };
 		7A287EE12E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287ED92E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift */; };
 		7A287EE22E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDD2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift */; };
@@ -76,6 +77,7 @@
 		BA00EAA764A0D5CC4E556549 /* AriseCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseCard.swift; sourceTree = "<group>"; };
 		BBC179CED1824DD119FB2966 /* AriseNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseNavigationBar.swift; sourceTree = "<group>"; };
 		BCD0FAF9191F42654E686CF5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		BCD0FAF9191F42654E686CF6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F62DBB6FCE4FCDCDEE28FBCA /* VoiceProfilesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceProfilesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -228,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				BCD0FAF9191F42654E686CF5 /* Assets.xcassets */,
+				BCD0FAF9191F42654E686CF6 /* LaunchScreen.storyboard */,
 				A903466533F515895F82DE72 /* Info.plist */,
 			);
 			path = Resources;
@@ -337,6 +340,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7056B861B924F366819B48AF /* Assets.xcassets in Resources */,
+				7056B862B924F366819B48B0 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +513,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -531,6 +536,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
