@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 63;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -16,6 +16,13 @@
 		6B4D25DB661A614705C27551 /* AriseUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F39144D3531F0CB58BA0EA /* AriseUITestsLaunchTests.swift */; };
 		7056B861B924F366819B48AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BCD0FAF9191F42654E686CF5 /* Assets.xcassets */; };
 		7832163D09B0A090FE72ED45 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29EB245FD35F96C8476B0961 /* Colors.swift */; };
+		7A287EE12E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287ED92E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift */; };
+		7A287EE22E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDD2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift */; };
+		7A287EE32E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDB2E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld */; };
+		7A287EE42E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDA2E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift */; };
+		7A287EE52E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDE2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift */; };
+		7A287EE62E3ECF6D00CC1CB8 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDC2E3ECF6D00CC1CB8 /* PersistenceController.swift */; };
+		7A287EE72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287ED72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift */; };
 		987839816367DA67A4B170D4 /* AlarmsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7EB28C79DCB1EB05A46CD /* AlarmsListView.swift */; };
 		B0AADF6650280914A586978F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1787A0FB5135038DC9276AB /* MainTabView.swift */; };
 		B6C0CFB60418AD5B9CE17BED /* AriseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D25B0DEA6504C0A145897 /* AriseButton.swift */; };
@@ -50,12 +57,19 @@
 		29EB245FD35F96C8476B0961 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		4D2FC8AF7EDFF047A499D87B /* AriseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseTests.swift; sourceTree = "<group>"; };
 		515945C196072F7AE15F4D26 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		5467A7DB8556C6D944A7AA0A /* Arise.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Arise.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5467A7DB8556C6D944A7AA0A /* Arise.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Arise.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		63F39144D3531F0CB58BA0EA /* AriseUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		6B9D25B0DEA6504C0A145897 /* AriseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseButton.swift; sourceTree = "<group>"; };
-		88FA5B2C8CDCE8AED689B05F /* AriseUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AriseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A287ED72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmPersistenceManager.swift; sourceTree = "<group>"; };
+		7A287ED92E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7A287EDA2E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Alarm+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7A287EDC2E3ECF6D00CC1CB8 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
+		7A287EDD2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoiceProfile+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7A287EDE2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoiceProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7A287EE02E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AriseDataModel.xcdatamodel; sourceTree = "<group>"; };
+		88FA5B2C8CDCE8AED689B05F /* AriseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AriseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94FED55CBBBC4070A1E080AA /* AriseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseApp.swift; sourceTree = "<group>"; };
-		9887EF74F24F8244A813AFF9 /* AriseTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = AriseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9887EF74F24F8244A813AFF9 /* AriseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AriseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A903466533F515895F82DE72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		B1787A0FB5135038DC9276AB /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		B2AF2339A51EB61700F04D17 /* Spacing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacing.swift; sourceTree = "<group>"; };
@@ -91,6 +105,8 @@
 				C95B6BBC6011B5EDE78DF6B2 /* Features */,
 				F21AD769BADADBD1E9494F8B /* Resources */,
 				CDBC044B1416FB582AD85CC7 /* Shared */,
+				7A287ED82E3ECF6D00CC1CB8 /* Managers */,
+				7A287EDF2E3ECF6D00CC1CB8 /* Persistence */,
 			);
 			path = Arise;
 			sourceTree = "<group>";
@@ -138,6 +154,27 @@
 				1DE7EB28C79DCB1EB05A46CD /* AlarmsListView.swift */,
 			);
 			path = Alarms;
+			sourceTree = "<group>";
+		};
+		7A287ED82E3ECF6D00CC1CB8 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7A287ED72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7A287EDF2E3ECF6D00CC1CB8 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				7A287ED92E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift */,
+				7A287EDA2E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift */,
+				7A287EDB2E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld */,
+				7A287EDC2E3ECF6D00CC1CB8 /* PersistenceController.swift */,
+				7A287EDD2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift */,
+				7A287EDE2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift */,
+			);
+			path = Persistence;
 			sourceTree = "<group>";
 		};
 		8C5BC430E7544DBF4DFD82E4 /* VoiceProfiles */ = {
@@ -260,7 +297,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					630E6F9C337AF75CE4A997D6 = {
 						DevelopmentTeam = FZF4NU59AF;
@@ -284,7 +321,6 @@
 			);
 			mainGroup = D1F2F52F2989100239CC455F;
 			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 54;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -325,6 +361,13 @@
 				B6C0CFB60418AD5B9CE17BED /* AriseButton.swift in Sources */,
 				41D18652CF4EBAA4E2A30368 /* AriseCard.swift in Sources */,
 				52ADF2C94FD8A558C67CE4D5 /* AriseNavigationBar.swift in Sources */,
+				7A287EE12E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift in Sources */,
+				7A287EE22E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift in Sources */,
+				7A287EE32E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld in Sources */,
+				7A287EE42E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift in Sources */,
+				7A287EE52E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift in Sources */,
+				7A287EE62E3ECF6D00CC1CB8 /* PersistenceController.swift in Sources */,
+				7A287EE72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift in Sources */,
 				7832163D09B0A090FE72ED45 /* Colors.swift in Sources */,
 				F20AA44FCBBC49CBBFDF1F56 /* ContentView.swift in Sources */,
 				B0AADF6650280914A586978F /* MainTabView.swift in Sources */,
@@ -415,6 +458,7 @@
 				DEVELOPMENT_TEAM = FZF4NU59AF;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -428,6 +472,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
@@ -533,6 +578,7 @@
 				DEVELOPMENT_TEAM = FZF4NU59AF;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -553,6 +599,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -636,6 +683,19 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		7A287EDB2E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				7A287EE02E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodel */,
+			);
+			currentVersion = 7A287EE02E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodel */;
+			path = AriseDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0B1DE534F4405CDAFE1773B5 /* Project object */;
 }
