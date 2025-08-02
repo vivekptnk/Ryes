@@ -1,0 +1,61 @@
+name: iOS CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-and-test:
+    runs-on: macos-14
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Select Xcode
+      run: sudo xcode-select -switch /Applications/Xcode_16.0.app
+      
+    - name: Show Xcode version
+      run: xcodebuild -version
+      
+    - name: Install xcbeautify
+      run: brew install xcbeautify
+      
+    - name: Build for iOS Simulator
+      run: |
+        xcodebuild build \
+          -project Arise.xcodeproj \
+          -scheme Arise \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
+          | xcbeautify
+          
+    - name: Run Tests
+      run: |
+        xcodebuild test \
+          -project Arise.xcodeproj \
+          -scheme Arise \
+          -sdk iphonesimulator \
+          -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
+          -resultBundlePath TestResults \
+          | xcbeautify
+          
+    - name: Upload Test Results
+      uses: actions/upload-artifact@v4
+      if: failure()
+      with:
+        name: test-results
+        path: TestResults
+
+  swiftlint:
+    runs-on: macos-14
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install SwiftLint
+      run: brew install swiftlint
+      
+    - name: Run SwiftLint
+      run: swiftlint --strict --reporter github-actions-logging
