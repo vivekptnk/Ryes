@@ -31,9 +31,10 @@ struct RyesApp: App {
                 .environmentObject(alarmScheduler)
                 .onAppear {
                     // Request notification permission on first launch
-                    Task {
-                        _ = await alarmScheduler.requestAuthorization()
-                        await alarmScheduler.scheduleAllAlarms()
+                    alarmScheduler.requestAuthorization { granted in
+                        if granted {
+                            alarmScheduler.scheduleAllAlarms()
+                        }
                     }
                 }
         }

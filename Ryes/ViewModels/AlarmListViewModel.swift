@@ -138,10 +138,8 @@ final class AlarmListViewModel: ObservableObject {
         alarmManager.fetchVoiceProfiles()
         
         // Schedule all alarms
-        Task {
-            await AlarmScheduler.shared.scheduleAllAlarms()
-            isLoading = false
-        }
+        AlarmScheduler.shared.scheduleAllAlarms()
+        isLoading = false
     }
     
     func deleteAlarms(_ alarms: IndexSet) {
@@ -167,7 +165,7 @@ final class AlarmListViewModel: ObservableObject {
     }
     
     func duplicateAlarm(_ alarm: Alarm) {
-        let newAlarm = alarmManager.createAlarm(
+        _ = alarmManager.createAlarm(
             time: alarm.time ?? Date(),
             label: (alarm.label ?? "") + " (Copy)",
             isEnabled: false,
@@ -180,7 +178,7 @@ final class AlarmListViewModel: ObservableObject {
     }
     
     func snoozeAlarm(_ alarm: Alarm, minutes: Int = 9) {
-        guard let currentTime = alarm.time else { return }
+        guard alarm.time != nil else { return }
         
         let snoozeTime = Calendar.current.date(byAdding: .minute, value: minutes, to: Date()) ?? Date()
         
@@ -194,9 +192,7 @@ final class AlarmListViewModel: ObservableObject {
             voiceProfile: alarm.voiceProfile
         )
         
-        Task {
-            await AlarmScheduler.shared.scheduleAlarm(snoozeAlarm)
-        }
+        AlarmScheduler.shared.scheduleAlarm(snoozeAlarm)
     }
     
     // MARK: - Enums

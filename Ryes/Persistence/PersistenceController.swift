@@ -26,7 +26,18 @@ final class PersistenceController {
     // MARK: - Initialization
     
     init(inMemory: Bool = false) {
-        container = NSPersistentContainer(name: "RyesDataModel")
+        // Try to load the model from the main bundle first
+        if let modelURL = Bundle.main.url(forResource: "RyesDataModel", withExtension: "momd"),
+           let model = NSManagedObjectModel(contentsOf: modelURL) {
+            container = NSPersistentContainer(name: "RyesDataModel", managedObjectModel: model)
+        } else if let modelURL = Bundle.allBundles.compactMap({ $0.url(forResource: "RyesDataModel", withExtension: "momd") }).first,
+                  let model = NSManagedObjectModel(contentsOf: modelURL) {
+            // Fallback to searching in all bundles (useful for tests)
+            container = NSPersistentContainer(name: "RyesDataModel", managedObjectModel: model)
+        } else {
+            // Last resort: try default initialization
+            container = NSPersistentContainer(name: "RyesDataModel")
+        }
         
         if inMemory {
             container.persistentStoreDescriptions.first?.url = URL(fileURLWithPath: "/dev/null")

@@ -6,14 +6,19 @@
 //
 
 import Testing
-@testable import Arise
+@testable import Ryes 
 import CoreData
 
+@MainActor
 struct CoreDataTests {
     
-    let testController = PersistenceController(inMemory: true)
+    // Create a new controller for each test to avoid conflicts
+    private func createTestController() -> PersistenceController {
+        return PersistenceController(inMemory: true)
+    }
     
     @Test func testAlarmCreation() async throws {
+        let testController = createTestController()
         let context = testController.viewContext
         
         // Create test alarm
@@ -42,6 +47,7 @@ struct CoreDataTests {
     }
     
     @Test func testVoiceProfileCreation() async throws {
+        let testController = createTestController()
         let context = testController.viewContext
         
         // Create test voice profile
@@ -67,6 +73,7 @@ struct CoreDataTests {
     }
     
     @Test func testAlarmVoiceProfileRelationship() async throws {
+        let testController = createTestController()
         let context = testController.viewContext
         
         // Create voice profile
@@ -74,6 +81,9 @@ struct CoreDataTests {
             in: context,
             name: "Morning Voice"
         )
+        
+        // Save the profile first to ensure it's properly persisted
+        try context.save()
         
         // Create alarms with this profile
         let alarm1 = Alarm.create(
@@ -100,6 +110,7 @@ struct CoreDataTests {
     }
     
     @Test func testAlarmNextDateCalculation() async throws {
+        let testController = createTestController()
         let context = testController.viewContext
         let calendar = Calendar.current
         let now = Date()
@@ -132,6 +143,7 @@ struct CoreDataTests {
     }
     
     @Test func testPersistenceManager() async throws {
+        let testController = createTestController()
         let manager = AlarmPersistenceManager(persistenceController: testController)
         
         // Create voice profile
@@ -143,17 +155,24 @@ struct CoreDataTests {
         #expect(profile.name == "Test Profile")
         #expect(manager.voiceProfiles.count == 1)
         
-        // Create alarm
+        // Fetch the profile from the context to ensure it's properly managed
+        manager.fetchVoiceProfiles()
+        guard let fetchedProfile = manager.voiceProfiles.first else {
+            #expect(Bool(false), "Failed to fetch voice profile")
+            return
+        }
+        
+        // Create alarm with the fetched profile
         let alarm = manager.createAlarm(
             time: Date(),
             label: "Manager Test",
             repeatDays: .everyday,
             dismissalType: .shake,
-            voiceProfile: profile
+            voiceProfile: fetchedProfile
         )
         
         #expect(alarm.label == "Manager Test")
-        #expect(alarm.voiceProfile == profile)
+        #expect(alarm.voiceProfile?.id == fetchedProfile.id)
         #expect(manager.alarms.count == 1)
         
         // Test statistics

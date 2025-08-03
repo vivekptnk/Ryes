@@ -8,8 +8,9 @@ final class AlarmScheduler: ObservableObject {
     // MARK: - Properties
     
     static let shared = AlarmScheduler()
-    private let notificationCenter = UNUserNotificationCenter.current()
+    private let notificationManager = NotificationManager.shared
     private let alarmManager: AlarmPersistenceManager
+    private let queueManager: NotificationQueueManager
     
     @Published var authorizationStatus: UNAuthorizationStatus = .notDetermined
     
@@ -17,221 +18,171 @@ final class AlarmScheduler: ObservableObject {
     
     private init(alarmManager: AlarmPersistenceManager = AlarmPersistenceManager()) {
         self.alarmManager = alarmManager
-        Task {
-            await checkAuthorizationStatus()
-        }
+        self.queueManager = NotificationQueueManager(alarmManager: alarmManager)
+        checkAuthorizationStatus()
+        setupNotificationCategories()
     }
     
     // MARK: - Authorization
     
     /// Request notification authorization
-    func requestAuthorization() async -> Bool {
-        do {
-            let granted = try await notificationCenter.requestAuthorization(
-                options: [.alert, .sound, .badge, .criticalAlert]
-            )
-            await checkAuthorizationStatus()
-            return granted
-        } catch {
-            print("Failed to request notification authorization: \(error)")
-            return false
+    func requestAuthorization(completion: @escaping (Bool) -> Void) {
+        notificationManager.requestAuthorization { [weak self] granted, error in
+            if let error = error {
+                print("Failed to request notification authorization: \(error)")
+            }
+            self?.checkAuthorizationStatus()
+            completion(granted)
         }
     }
     
     /// Check current authorization status
-    @MainActor
     func checkAuthorizationStatus() {
-        Task {
-            let settings = await notificationCenter.notificationSettings()
-            authorizationStatus = settings.authorizationStatus
+        notificationManager.checkAuthorizationStatus { [weak self] status in
+            self?.authorizationStatus = status
         }
     }
     
     // MARK: - Scheduling
     
-    /// Schedule all enabled alarms
-    func scheduleAllAlarms() async {
+    /// Schedule all enabled alarms with queue management
+    func scheduleAllAlarms() {
+        queueManager.scheduleAllAlarmsWithLimit { [weak self] result in
+            switch result {
+            case .success(let report):
+                print("Scheduled \(report.scheduledAlarms) of \(report.totalAlarms) alarms")
+                if report.skippedAlarms > 0 {
+                    print("Warning: \(report.skippedAlarms) alarms were skipped due to notification limit")
+                }
+            case .failure(let error):
+                print("Failed to schedule alarms: \(error)")
+                self?.scheduleAllAlarmsLegacy() // Fallback to legacy method
+            }
+        }
+    }
+    
+    /// Legacy scheduling method without queue management
+    private func scheduleAllAlarmsLegacy() {
         // Cancel all existing notifications
-        await cancelAllScheduledAlarms()
+        cancelAllScheduledAlarms()
         
         // Get all enabled alarms
         let enabledAlarms = alarmManager.fetchEnabledAlarms()
         
         // Schedule each alarm
         for alarm in enabledAlarms {
-            await scheduleAlarm(alarm)
+            scheduleAlarm(alarm)
         }
     }
     
     /// Schedule a single alarm
-    func scheduleAlarm(_ alarm: Alarm) async {
-        guard alarm.isEnabled else { return }
+    func scheduleAlarm(_ alarm: Alarm) {
+        guard alarm.isEnabled,
+              let alarmId = alarm.id,
+              let time = alarm.time else { return }
         
-        // Create notification content
-        let content = createNotificationContent(for: alarm)
+        let label = alarm.label ?? "Alarm"
+        let sound = createNotificationSound(for: alarm)
         
         if alarm.isRepeating {
             // Schedule repeating alarms
-            await scheduleRepeatingAlarm(alarm, content: content)
+            scheduleRepeatingAlarm(alarm)
         } else {
             // Schedule one-time alarm
-            await scheduleOneTimeAlarm(alarm, content: content)
+            notificationManager.scheduleAlarmNotification(
+                alarmId: alarmId.uuidString,
+                time: time,
+                label: label,
+                sound: sound
+            ) { result in
+                switch result {
+                case .success:
+                    print("Scheduled one-time alarm for \(time)")
+                case .failure(let error):
+                    print("Failed to schedule alarm: \(error)")
+                }
+            }
         }
     }
     
     /// Reschedule a specific alarm
-    func rescheduleAlarm(_ alarm: Alarm) async {
+    func rescheduleAlarm(_ alarm: Alarm) {
         // Cancel existing notifications for this alarm
-        await cancelScheduledAlarm(alarm)
+        cancelScheduledAlarm(alarm)
         
         // Schedule if enabled
         if alarm.isEnabled {
-            await scheduleAlarm(alarm)
+            scheduleAlarm(alarm)
         }
     }
     
     /// Cancel all scheduled alarms
-    func cancelAllScheduledAlarms() async {
-        notificationCenter.removeAllPendingNotificationRequests()
+    func cancelAllScheduledAlarms() {
+        notificationManager.getPendingNotifications { requests in
+            let identifiers = requests.map { $0.identifier }
+            self.notificationManager.cancelNotifications(identifiers: identifiers)
+        }
     }
     
     /// Cancel a specific alarm
-    func cancelScheduledAlarm(_ alarm: Alarm) async {
+    func cancelScheduledAlarm(_ alarm: Alarm) {
         guard let alarmId = alarm.id else { return }
         
-        // For repeating alarms, we need to cancel all 7 possible notifications
-        if alarm.isRepeating {
-            for day in 1...7 {
-                let identifier = "\(alarmId.uuidString)-\(day)"
-                notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+        notificationManager.cancelAlarmNotifications(alarmId: alarmId.uuidString) { result in
+            switch result {
+            case .success:
+                print("Cancelled notifications for alarm \(alarmId.uuidString)")
+            case .failure(let error):
+                print("Failed to cancel notifications: \(error)")
             }
-        } else {
-            notificationCenter.removePendingNotificationRequests(withIdentifiers: [alarmId.uuidString])
         }
     }
     
     // MARK: - Private Methods
     
-    private func createNotificationContent(for alarm: Alarm) -> UNMutableNotificationContent {
-        let content = UNMutableNotificationContent()
-        
-        // Title and body
-        content.title = "Alarm"
-        if let label = alarm.label, !label.isEmpty {
-            content.subtitle = label
-        }
-        content.body = "Time to wake up!"
-        
-        // Sound
-        content.sound = .defaultCritical
-        
-        // Badge
-        content.badge = 1
-        
-        // User info for handling
-        content.userInfo = [
-            "alarmId": alarm.id?.uuidString ?? "",
-            "dismissalType": alarm.dismissalType ?? "standard"
-        ]
-        
-        // Category for actions
-        content.categoryIdentifier = "ALARM_CATEGORY"
-        
-        // Critical alert if available
-        if authorizationStatus == .authorized {
-            content.interruptionLevel = .critical
-        }
-        
-        return content
+    private func createNotificationSound(for alarm: Alarm) -> UNNotificationSound {
+        // TODO: Add custom sound support based on alarm settings
+        return .defaultCritical
     }
     
-    private func scheduleOneTimeAlarm(_ alarm: Alarm, content: UNMutableNotificationContent) async {
+    private func scheduleRepeatingAlarm(_ alarm: Alarm) {
         guard let alarmId = alarm.id,
-              alarm.time != nil else { return }
+              let time = alarm.time else { return }
         
-        let nextDate = alarm.nextAlarmDate
-        let components = Calendar.current.dateComponents(
-            [.year, .month, .day, .hour, .minute],
-            from: nextDate
-        )
+        let label = alarm.label ?? "Alarm"
+        let sound = createNotificationSound(for: alarm)
+        let repeatDays = weekdaysFromRepeatDaySet(alarm.repeatDaysSet)
         
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: components,
-            repeats: false
-        )
-        
-        let request = UNNotificationRequest(
-            identifier: alarmId.uuidString,
-            content: content,
-            trigger: trigger
-        )
-        
-        do {
-            try await notificationCenter.add(request)
-            print("Scheduled one-time alarm for \(nextDate)")
-        } catch {
-            print("Failed to schedule alarm: \(error)")
+        notificationManager.scheduleRecurringAlarmNotifications(
+            alarmId: alarmId.uuidString,
+            time: time,
+            label: label,
+            repeatDays: Set(repeatDays),
+            sound: sound
+        ) { result in
+            switch result {
+            case .success(let identifiers):
+                print("Scheduled recurring alarm with \(identifiers.count) notifications")
+            case .failure(let error):
+                print("Failed to schedule recurring alarm: \(error)")
+            }
         }
     }
     
-    private func scheduleRepeatingAlarm(_ alarm: Alarm, content: UNMutableNotificationContent) async {
-        guard let alarmId = alarm.id,
-              let alarmTime = alarm.time else { return }
+    private func weekdaysFromRepeatDaySet(_ repeatDaySet: Alarm.RepeatDay) -> Set<Int> {
+        var weekdays = Set<Int>()
         
-        let calendar = Calendar.current
-        let timeComponents = calendar.dateComponents([.hour, .minute], from: alarmTime)
+        if repeatDaySet.contains(.sunday) { weekdays.insert(1) }
+        if repeatDaySet.contains(.monday) { weekdays.insert(2) }
+        if repeatDaySet.contains(.tuesday) { weekdays.insert(3) }
+        if repeatDaySet.contains(.wednesday) { weekdays.insert(4) }
+        if repeatDaySet.contains(.thursday) { weekdays.insert(5) }
+        if repeatDaySet.contains(.friday) { weekdays.insert(6) }
+        if repeatDaySet.contains(.saturday) { weekdays.insert(7) }
         
-        // Schedule for each selected day
-        let repeatDays = alarm.repeatDaysSet
-        
-        if repeatDays.contains(.sunday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 1, timeComponents: timeComponents)
-        }
-        if repeatDays.contains(.monday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 2, timeComponents: timeComponents)
-        }
-        if repeatDays.contains(.tuesday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 3, timeComponents: timeComponents)
-        }
-        if repeatDays.contains(.wednesday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 4, timeComponents: timeComponents)
-        }
-        if repeatDays.contains(.thursday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 5, timeComponents: timeComponents)
-        }
-        if repeatDays.contains(.friday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 6, timeComponents: timeComponents)
-        }
-        if repeatDays.contains(.saturday) {
-            await scheduleDayAlarm(alarmId: alarmId, content: content, weekday: 7, timeComponents: timeComponents)
-        }
+        return weekdays
     }
     
-    private func scheduleDayAlarm(alarmId: UUID, content: UNMutableNotificationContent, weekday: Int, timeComponents: DateComponents) async {
-        var components = DateComponents()
-        components.weekday = weekday
-        components.hour = timeComponents.hour
-        components.minute = timeComponents.minute
-        
-        let trigger = UNCalendarNotificationTrigger(
-            dateMatching: components,
-            repeats: true
-        )
-        
-        let identifier = "\(alarmId.uuidString)-\(weekday)"
-        let request = UNNotificationRequest(
-            identifier: identifier,
-            content: content,
-            trigger: trigger
-        )
-        
-        do {
-            try await notificationCenter.add(request)
-            print("Scheduled repeating alarm for weekday \(weekday)")
-        } catch {
-            print("Failed to schedule repeating alarm: \(error)")
-        }
-    }
     
     // MARK: - Notification Actions
     
@@ -256,27 +207,40 @@ final class AlarmScheduler: ObservableObject {
             options: [.customDismissAction]
         )
         
-        notificationCenter.setNotificationCategories([category])
+        UNUserNotificationCenter.current().setNotificationCategories([category])
     }
     
     // MARK: - Debug Methods
     
     /// Get all pending notifications (for debugging)
-    func getPendingNotifications() async -> [UNNotificationRequest] {
-        await notificationCenter.pendingNotificationRequests()
+    func getPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void) {
+        notificationManager.getPendingNotifications(completion: completion)
     }
     
     /// Print all scheduled alarms (for debugging)
-    func printScheduledAlarms() async {
-        let requests = await getPendingNotifications()
-        print("=== Scheduled Alarms ===")
-        for request in requests {
-            print("ID: \(request.identifier)")
-            if let trigger = request.trigger as? UNCalendarNotificationTrigger {
-                print("Date: \(trigger.dateComponents)")
-                print("Repeats: \(trigger.repeats)")
+    func printScheduledAlarms() {
+        getPendingNotifications { requests in
+            print("=== Scheduled Alarms ===")
+            for request in requests {
+                print("ID: \(request.identifier)")
+                if let trigger = request.trigger as? UNCalendarNotificationTrigger {
+                    print("Date: \(trigger.dateComponents)")
+                    print("Repeats: \(trigger.repeats)")
+                }
+                print("---")
             }
-            print("---")
+        }
+    }
+    
+    /// Get current notification queue status
+    func getQueueStatus(completion: @escaping (NotificationQueueManager.QueueStatus) -> Void) {
+        queueManager.getQueueStatus(completion: completion)
+    }
+    
+    /// Check if we can schedule more alarms
+    func canScheduleMoreAlarms(completion: @escaping (Bool) -> Void) {
+        queueManager.getQueueStatus { status in
+            completion(!status.isAlarmQueueFull)
         }
     }
 }
@@ -287,27 +251,18 @@ extension AlarmPersistenceManager {
     /// Update alarm and reschedule notifications
     func updateAlarmWithScheduling(_ alarm: Alarm) {
         updateAlarm(alarm)
-        
-        Task {
-            await AlarmScheduler.shared.rescheduleAlarm(alarm)
-        }
+        AlarmScheduler.shared.rescheduleAlarm(alarm)
     }
     
     /// Delete alarm and cancel notifications
     func deleteAlarmWithScheduling(_ alarm: Alarm) {
-        Task {
-            await AlarmScheduler.shared.cancelScheduledAlarm(alarm)
-        }
-        
+        AlarmScheduler.shared.cancelScheduledAlarm(alarm)
         deleteAlarm(alarm)
     }
     
     /// Toggle alarm and update scheduling
     func toggleAlarmWithScheduling(_ alarm: Alarm) {
         toggleAlarm(alarm)
-        
-        Task {
-            await AlarmScheduler.shared.rescheduleAlarm(alarm)
-        }
+        AlarmScheduler.shared.rescheduleAlarm(alarm)
     }
 }

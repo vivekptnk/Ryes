@@ -4,12 +4,12 @@ struct NotificationPermissionView: View {
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
-        VStack(spacing: Spacing.large) {
+        VStack(spacing: RyesSpacing.large) {
             // Icon
             Image(systemName: "bell.slash.fill")
                 .font(.system(size: 60))
                 .foregroundColor(.ryesPrimary)
-                .padding(.top, Spacing.extraLarge)
+                .padding(.top, RyesSpacing.xLarge)
             
             // Title
             Text("Notifications Required")
@@ -22,16 +22,15 @@ struct NotificationPermissionView: View {
                 .font(.body)
                 .foregroundColor(.ryesForegroundSecondary)
                 .multilineTextAlignment(.center)
-                .padding(.horizontal, Spacing.medium)
+                .padding(.horizontal, RyesSpacing.medium)
             
             Spacer()
             
             // Buttons
-            VStack(spacing: Spacing.medium) {
+            VStack(spacing: RyesSpacing.medium) {
                 RyesButton(
-                    title: "Open Settings",
-                    style: .primary,
-                    fullWidth: true
+                    "Open Settings",
+                    style: .primary
                 ) {
                     if let settingsURL = URL(string: UIApplication.openSettingsURLString) {
                         UIApplication.shared.open(settingsURL)
@@ -39,15 +38,14 @@ struct NotificationPermissionView: View {
                 }
                 
                 RyesButton(
-                    title: "Cancel",
-                    style: .secondary,
-                    fullWidth: true
+                    "Cancel",
+                    style: .secondary
                 ) {
                     dismiss()
                 }
             }
-            .padding(.horizontal, Spacing.large)
-            .padding(.bottom, Spacing.large)
+            .padding(.horizontal, RyesSpacing.large)
+            .padding(.bottom, RyesSpacing.large)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.ryesBackground)

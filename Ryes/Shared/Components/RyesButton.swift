@@ -86,16 +86,16 @@ struct RyesButton: View {
     private var textColor: Color {
         switch style {
         case .primary: return .white
-        case .secondary: return .ryesPrimaryFallback
+        case .secondary: return .ryesPrimary
         case .destructive: return .white
-        case .ghost: return .ryesPrimaryFallback
+        case .ghost: return .ryesPrimary
         }
     }
     
     private var backgroundColor: Color {
         switch style {
-        case .primary: return .ryesPrimaryFallback
-        case .secondary: return .ryesPrimaryFallback.opacity(0.1)
+        case .primary: return .ryesPrimary
+        case .secondary: return .ryesPrimary.opacity(0.1)
         case .destructive: return .red
         case .ghost: return .clear
         }

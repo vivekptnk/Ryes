@@ -4,6 +4,13 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             Form {
+                // Notification Queue Status
+                Section {
+                    NotificationQueueStatusView()
+                        .listRowBackground(Color.clear)
+                        .listRowInsets(EdgeInsets())
+                }
+                
                 Section("General") {
                     NavigationLink(destination: Text("Notifications Settings")) {
                         Label("Notifications", systemImage: "bell")

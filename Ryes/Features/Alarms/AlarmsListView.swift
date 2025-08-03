@@ -64,7 +64,7 @@ struct AlarmsListView: View {
     private func checkPermissionAndCreateAlarm() {
         NotificationManager.shared.checkAuthorizationStatus { status in
             switch status {
-            case .authorized, .provisional:
+            case .authorized, .provisional, .ephemeral:
                 showingCreateAlarm = true
             case .denied:
                 showingPermissionView = true

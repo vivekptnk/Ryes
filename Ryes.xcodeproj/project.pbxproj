@@ -30,6 +30,16 @@
 		7A7E52012E3EDB2F00B607A3 /* CollapsibleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E52002E3EDB2F00B607A3 /* CollapsibleSection.swift */; };
 		7A7E52032E3EDB7900B607A3 /* RepeatDaysSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E52022E3EDB7900B607A3 /* RepeatDaysSelector.swift */; };
 		7A7E52062E3EDD1C00B607A3 /* AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */; };
+		7AABA3572E3EF97900DF9F44 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3562E3EF97900DF9F44 /* NotificationManager.swift */; };
+		7AABA35A2E3EF98F00DF9F44 /* NotificationPermissionModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3582E3EF98F00DF9F44 /* NotificationPermissionModifier.swift */; };
+		7AABA35C2E3EF9A300DF9F44 /* NotificationPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA35B2E3EF9A300DF9F44 /* NotificationPermissionView.swift */; };
+		7AABA3652E3EF9CD00DF9F44 /* NotificationManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3602E3EF9CD00DF9F44 /* NotificationManagerTests.swift */; };
+		7AABA3662E3EF9CD00DF9F44 /* CoreDataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA35D2E3EF9CD00DF9F44 /* CoreDataTests.swift */; };
+		7AABA36B2E3EFA8100DF9F44 /* AlarmListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3692E3EFA8100DF9F44 /* AlarmListViewModel.swift */; };
+		7AABA36D2E3F006F00DF9F44 /* NotificationQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA36C2E3F006F00DF9F44 /* NotificationQueueManager.swift */; };
+		7AABA36F2E3F009700DF9F44 /* NotificationQueueStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA36E2E3F009700DF9F44 /* NotificationQueueStatusView.swift */; };
+		7AABA3712E3F010A00DF9F44 /* NotificationSchedulingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3702E3F010A00DF9F44 /* NotificationSchedulingTests.swift */; };
+		7AABA3732E3F011500DF9F44 /* NotificationQueueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3722E3F011500DF9F44 /* NotificationQueueTests.swift */; };
 		987839816367DA67A4B170D4 /* AlarmsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7EB28C79DCB1EB05A46CD /* AlarmsListView.swift */; };
 		B0AADF6650280914A586978F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1787A0FB5135038DC9276AB /* MainTabView.swift */; };
 		B6C0CFB60418AD5B9CE17BED /* RyesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D25B0DEA6504C0A145897 /* RyesButton.swift */; };
@@ -80,6 +90,16 @@
 		7A7E52002E3EDB2F00B607A3 /* CollapsibleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleSection.swift; sourceTree = "<group>"; };
 		7A7E52022E3EDB7900B607A3 /* RepeatDaysSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelector.swift; sourceTree = "<group>"; };
 		7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmScheduler.swift; sourceTree = "<group>"; };
+		7AABA3562E3EF97900DF9F44 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		7AABA3582E3EF98F00DF9F44 /* NotificationPermissionModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionModifier.swift; sourceTree = "<group>"; };
+		7AABA35B2E3EF9A300DF9F44 /* NotificationPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationPermissionView.swift; sourceTree = "<group>"; };
+		7AABA35D2E3EF9CD00DF9F44 /* CoreDataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTests.swift; sourceTree = "<group>"; };
+		7AABA3602E3EF9CD00DF9F44 /* NotificationManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManagerTests.swift; sourceTree = "<group>"; };
+		7AABA3692E3EFA8100DF9F44 /* AlarmListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmListViewModel.swift; sourceTree = "<group>"; };
+		7AABA36C2E3F006F00DF9F44 /* NotificationQueueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationQueueManager.swift; sourceTree = "<group>"; };
+		7AABA36E2E3F009700DF9F44 /* NotificationQueueStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationQueueStatusView.swift; sourceTree = "<group>"; };
+		7AABA3702E3F010A00DF9F44 /* NotificationSchedulingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSchedulingTests.swift; sourceTree = "<group>"; };
+		7AABA3722E3F011500DF9F44 /* NotificationQueueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationQueueTests.swift; sourceTree = "<group>"; };
 		88FA5B2C8CDCE8AED689B05F /* RyesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RyesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94FED55CBBBC4070A1E080AA /* RyesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RyesApp.swift; sourceTree = "<group>"; };
 		9887EF74F24F8244A813AFF9 /* RyesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RyesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +117,11 @@
 		069FCB691A5F3841CBCD3685 /* RyesTests */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA35D2E3EF9CD00DF9F44 /* CoreDataTests.swift */,
+				7AABA3602E3EF9CD00DF9F44 /* NotificationManagerTests.swift */,
 				4D2FC8AF7EDFF047A499D87B /* RyesTests.swift */,
+				7AABA3702E3F010A00DF9F44 /* NotificationSchedulingTests.swift */,
+				7AABA3722E3F011500DF9F44 /* NotificationQueueTests.swift */,
 			);
 			path = RyesTests;
 			sourceTree = "<group>";
@@ -115,6 +139,7 @@
 		2B434D09A0B455F4953ED1DB /* Ryes */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA36A2E3EFA8100DF9F44 /* ViewModels */,
 				F21AD769BADADBD1E9494F8B /* Resources */,
 				3A9A0124CE6813300ABB7272 /* App */,
 				7A7E51F92E3ED7BB00B607A3 /* UI */,
@@ -130,6 +155,7 @@
 		3A9A0124CE6813300ABB7272 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA3672E3EF9E400DF9F44 /* Resources */,
 				94FED55CBBBC4070A1E080AA /* RyesApp.swift */,
 				515945C196072F7AE15F4D26 /* ContentView.swift */,
 				B1787A0FB5135038DC9276AB /* MainTabView.swift */,
@@ -198,6 +224,8 @@
 		7A7E51F82E3ED7BB00B607A3 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA36E2E3F009700DF9F44 /* NotificationQueueStatusView.swift */,
+				7AABA35B2E3EF9A300DF9F44 /* NotificationPermissionView.swift */,
 				7A7E52002E3EDB2F00B607A3 /* CollapsibleSection.swift */,
 				7A7E52022E3EDB7900B607A3 /* RepeatDaysSelector.swift */,
 				7A7E51F72E3ED7BB00B607A3 /* FloatingActionButton.swift */,
@@ -208,6 +236,7 @@
 		7A7E51F92E3ED7BB00B607A3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA3592E3EF98F00DF9F44 /* Modifiers */,
 				7A7E51F82E3ED7BB00B607A3 /* Components */,
 			);
 			path = UI;
@@ -224,9 +253,34 @@
 		7A7E52052E3EDD1C00B607A3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA3562E3EF97900DF9F44 /* NotificationManager.swift */,
 				7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */,
+				7AABA36C2E3F006F00DF9F44 /* NotificationQueueManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		7AABA3592E3EF98F00DF9F44 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				7AABA3582E3EF98F00DF9F44 /* NotificationPermissionModifier.swift */,
+			);
+			path = Modifiers;
+			sourceTree = "<group>";
+		};
+		7AABA3672E3EF9E400DF9F44 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7AABA36A2E3EFA8100DF9F44 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7AABA3692E3EFA8100DF9F44 /* AlarmListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		8C5BC430E7544DBF4DFD82E4 /* VoiceProfiles */ = {
@@ -407,29 +461,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AABA36D2E3F006F00DF9F44 /* NotificationQueueManager.swift in Sources */,
 				7A7E51FF2E3ED94700B607A3 /* AlarmEditView.swift in Sources */,
 				987839816367DA67A4B170D4 /* AlarmsListView.swift in Sources */,
-				45EFA46E4CF064FFCAE49F2F /* AriseApp.swift in Sources */,
+				7AABA36B2E3EFA8100DF9F44 /* AlarmListViewModel.swift in Sources */,
+				45EFA46E4CF064FFCAE49F2F /* RyesApp.swift in Sources */,
 				B6C0CFB60418AD5B9CE17BED /* RyesButton.swift in Sources */,
 				41D18652CF4EBAA4E2A30368 /* RyesCard.swift in Sources */,
 				7A7E52012E3EDB2F00B607A3 /* CollapsibleSection.swift in Sources */,
+				7AABA3572E3EF97900DF9F44 /* NotificationManager.swift in Sources */,
 				52ADF2C94FD8A558C67CE4D5 /* RyesNavigationBar.swift in Sources */,
 				7A287EE12E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift in Sources */,
 				7A287EE22E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift in Sources */,
 				7A7E51FA2E3ED7BB00B607A3 /* FloatingActionButton.swift in Sources */,
-				7A287EE32E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld in Sources */,
+				7A287EE32E3ECF6D00CC1CB8 /* RyesDataModel.xcdatamodeld in Sources */,
 				7A287EE42E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift in Sources */,
 				7A287EE52E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift in Sources */,
 				7A287EE62E3ECF6D00CC1CB8 /* PersistenceController.swift in Sources */,
 				7A287EE72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift in Sources */,
 				7832163D09B0A090FE72ED45 /* Colors.swift in Sources */,
 				F20AA44FCBBC49CBBFDF1F56 /* ContentView.swift in Sources */,
+				7AABA35A2E3EF98F00DF9F44 /* NotificationPermissionModifier.swift in Sources */,
 				B0AADF6650280914A586978F /* MainTabView.swift in Sources */,
 				7A7E51FD2E3ED87900B607A3 /* AlarmCardView.swift in Sources */,
 				BC0CB3230CF88587144915A6 /* SettingsView.swift in Sources */,
 				7A7E52062E3EDD1C00B607A3 /* AlarmScheduler.swift in Sources */,
 				1A6C622931DD4D587171F873 /* Spacing.swift in Sources */,
+				7AABA35C2E3EF9A300DF9F44 /* NotificationPermissionView.swift in Sources */,
 				1CA11CF08B48F7CD9D73DF7E /* Typography.swift in Sources */,
+				7AABA36F2E3F009700DF9F44 /* NotificationQueueStatusView.swift in Sources */,
 				7A7E52032E3EDB7900B607A3 /* RepeatDaysSelector.swift in Sources */,
 				66BB49998595B4F350C83221 /* VoiceProfilesView.swift in Sources */,
 			);
@@ -439,7 +499,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7AABA3712E3F010A00DF9F44 /* NotificationSchedulingTests.swift in Sources */,
+				7AABA3652E3EF9CD00DF9F44 /* NotificationManagerTests.swift in Sources */,
+				7AABA3662E3EF9CD00DF9F44 /* CoreDataTests.swift in Sources */,
 				D1BF486719198477BA89C1E3 /* RyesTests.swift in Sources */,
+				7AABA3732E3F011500DF9F44 /* NotificationQueueTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -448,12 +512,12 @@
 /* Begin PBXTargetDependency section */
 		602DA7FC7268A7BF9E4466A8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 630E6F9C337AF75CE4A997D6 /* Arise */;
+			target = 630E6F9C337AF75CE4A997D6 /* Ryes */;
 			targetProxy = C826E44EE04603A17404402B /* PBXContainerItemProxy */;
 		};
 		7946C0DECA1D504496776E5C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 630E6F9C337AF75CE4A997D6 /* Arise */;
+			target = 630E6F9C337AF75CE4A997D6 /* Ryes */;
 			targetProxy = 3FCC4C9C7E240B0821231508 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
