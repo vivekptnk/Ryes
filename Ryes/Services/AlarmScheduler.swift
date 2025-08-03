@@ -54,6 +54,14 @@ final class AlarmScheduler: ObservableObject {
                 if report.skippedAlarms > 0 {
                     print("Warning: \(report.skippedAlarms) alarms were skipped due to notification limit")
                 }
+                
+                // Notify background audio service about alarm state change
+                if report.scheduledAlarms > 0 {
+                    BackgroundAudioService.shared.handleAlarmsEnabled()
+                } else {
+                    BackgroundAudioService.shared.handleAlarmsDisabled()
+                }
+                
             case .failure(let error):
                 print("Failed to schedule alarms: \(error)")
                 self?.scheduleAllAlarmsLegacy() // Fallback to legacy method
@@ -121,6 +129,9 @@ final class AlarmScheduler: ObservableObject {
         notificationManager.getPendingNotifications { requests in
             let identifiers = requests.map { $0.identifier }
             self.notificationManager.cancelNotifications(identifiers: identifiers)
+            
+            // Notify background audio service that all alarms are cancelled
+            BackgroundAudioService.shared.handleAlarmsDisabled()
         }
     }
     

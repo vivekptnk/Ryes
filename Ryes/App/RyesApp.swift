@@ -5,6 +5,7 @@ struct RyesApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject private var alarmManager = AlarmPersistenceManager()
     @StateObject private var alarmScheduler = AlarmScheduler.shared
+    @StateObject private var backgroundAudioService = BackgroundAudioService.shared
     
     init() {
         // Configure navigation bar appearance
@@ -21,6 +22,27 @@ struct RyesApp: App {
         
         // Setup notification categories
         AlarmScheduler.shared.setupNotificationCategories()
+        
+        // Setup app lifecycle notifications for background audio
+        setupBackgroundAudioLifecycle()
+    }
+    
+    private func setupBackgroundAudioLifecycle() {
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            BackgroundAudioService.shared.handleAppDidEnterBackground()
+        }
+        
+        NotificationCenter.default.addObserver(
+            forName: UIApplication.willEnterForegroundNotification,
+            object: nil,
+            queue: .main
+        ) { _ in
+            BackgroundAudioService.shared.handleAppWillEnterForeground()
+        }
     }
     
     var body: some Scene {
@@ -29,6 +51,7 @@ struct RyesApp: App {
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(alarmManager)
                 .environmentObject(alarmScheduler)
+                .environmentObject(backgroundAudioService)
                 .onAppear {
                     // Request notification permission on first launch
                     alarmScheduler.requestAuthorization { granted in
