@@ -4,6 +4,7 @@ import SwiftUI
 struct AriseApp: App {
     let persistenceController = PersistenceController.shared
     @StateObject private var alarmManager = AlarmPersistenceManager()
+    @StateObject private var alarmScheduler = AlarmScheduler.shared
     
     init() {
         // Configure navigation bar appearance
@@ -17,6 +18,9 @@ struct AriseApp: App {
         tabBarAppearance.configureWithDefaultBackground()
         UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
         UITabBar.appearance().standardAppearance = tabBarAppearance
+        
+        // Setup notification categories
+        AlarmScheduler.shared.setupNotificationCategories()
     }
     
     var body: some Scene {
@@ -24,6 +28,14 @@ struct AriseApp: App {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(alarmManager)
+                .environmentObject(alarmScheduler)
+                .onAppear {
+                    // Request notification permission on first launch
+                    Task {
+                        _ = await alarmScheduler.requestAuthorization()
+                        await alarmScheduler.scheduleAllAlarms()
+                    }
+                }
         }
     }
 }

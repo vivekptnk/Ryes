@@ -24,6 +24,12 @@
 		7A287EE52E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDE2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift */; };
 		7A287EE62E3ECF6D00CC1CB8 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287EDC2E3ECF6D00CC1CB8 /* PersistenceController.swift */; };
 		7A287EE72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A287ED72E3ECF6D00CC1CB8 /* AlarmPersistenceManager.swift */; };
+		7A7E51FA2E3ED7BB00B607A3 /* FloatingActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E51F72E3ED7BB00B607A3 /* FloatingActionButton.swift */; };
+		7A7E51FD2E3ED87900B607A3 /* AlarmCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E51FB2E3ED87900B607A3 /* AlarmCardView.swift */; };
+		7A7E51FF2E3ED94700B607A3 /* AlarmEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E51FE2E3ED94700B607A3 /* AlarmEditView.swift */; };
+		7A7E52012E3EDB2F00B607A3 /* CollapsibleSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E52002E3EDB2F00B607A3 /* CollapsibleSection.swift */; };
+		7A7E52032E3EDB7900B607A3 /* RepeatDaysSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E52022E3EDB7900B607A3 /* RepeatDaysSelector.swift */; };
+		7A7E52062E3EDD1C00B607A3 /* AlarmScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */; };
 		987839816367DA67A4B170D4 /* AlarmsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7EB28C79DCB1EB05A46CD /* AlarmsListView.swift */; };
 		B0AADF6650280914A586978F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1787A0FB5135038DC9276AB /* MainTabView.swift */; };
 		B6C0CFB60418AD5B9CE17BED /* AriseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D25B0DEA6504C0A145897 /* AriseButton.swift */; };
@@ -68,6 +74,12 @@
 		7A287EDD2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoiceProfile+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7A287EDE2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VoiceProfile+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7A287EE02E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AriseDataModel.xcdatamodel; sourceTree = "<group>"; };
+		7A7E51F72E3ED7BB00B607A3 /* FloatingActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingActionButton.swift; sourceTree = "<group>"; };
+		7A7E51FB2E3ED87900B607A3 /* AlarmCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmCardView.swift; sourceTree = "<group>"; };
+		7A7E51FE2E3ED94700B607A3 /* AlarmEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmEditView.swift; sourceTree = "<group>"; };
+		7A7E52002E3EDB2F00B607A3 /* CollapsibleSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleSection.swift; sourceTree = "<group>"; };
+		7A7E52022E3EDB7900B607A3 /* RepeatDaysSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatDaysSelector.swift; sourceTree = "<group>"; };
+		7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmScheduler.swift; sourceTree = "<group>"; };
 		88FA5B2C8CDCE8AED689B05F /* AriseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AriseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94FED55CBBBC4070A1E080AA /* AriseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AriseApp.swift; sourceTree = "<group>"; };
 		9887EF74F24F8244A813AFF9 /* AriseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AriseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -103,12 +115,14 @@
 		2B434D09A0B455F4953ED1DB /* Arise */ = {
 			isa = PBXGroup;
 			children = (
-				3A9A0124CE6813300ABB7272 /* App */,
-				C95B6BBC6011B5EDE78DF6B2 /* Features */,
 				F21AD769BADADBD1E9494F8B /* Resources */,
+				3A9A0124CE6813300ABB7272 /* App */,
+				7A7E51F92E3ED7BB00B607A3 /* UI */,
+				C95B6BBC6011B5EDE78DF6B2 /* Features */,
 				CDBC044B1416FB582AD85CC7 /* Shared */,
 				7A287ED82E3ECF6D00CC1CB8 /* Managers */,
 				7A287EDF2E3ECF6D00CC1CB8 /* Persistence */,
+				7A7E52052E3EDD1C00B607A3 /* Services */,
 			);
 			path = Arise;
 			sourceTree = "<group>";
@@ -153,7 +167,9 @@
 		6071245B90BEB80DE8E0B3B9 /* Alarms */ = {
 			isa = PBXGroup;
 			children = (
+				7A7E51FE2E3ED94700B607A3 /* AlarmEditView.swift */,
 				1DE7EB28C79DCB1EB05A46CD /* AlarmsListView.swift */,
+				7A7E51FC2E3ED87900B607A3 /* Components */,
 			);
 			path = Alarms;
 			sourceTree = "<group>";
@@ -177,6 +193,40 @@
 				7A287EDE2E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift */,
 			);
 			path = Persistence;
+			sourceTree = "<group>";
+		};
+		7A7E51F82E3ED7BB00B607A3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7A7E52002E3EDB2F00B607A3 /* CollapsibleSection.swift */,
+				7A7E52022E3EDB7900B607A3 /* RepeatDaysSelector.swift */,
+				7A7E51F72E3ED7BB00B607A3 /* FloatingActionButton.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7A7E51F92E3ED7BB00B607A3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				7A7E51F82E3ED7BB00B607A3 /* Components */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		7A7E51FC2E3ED87900B607A3 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7A7E51FB2E3ED87900B607A3 /* AlarmCardView.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7A7E52052E3EDD1C00B607A3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 		8C5BC430E7544DBF4DFD82E4 /* VoiceProfiles */ = {
@@ -360,13 +410,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A7E51FF2E3ED94700B607A3 /* AlarmEditView.swift in Sources */,
 				987839816367DA67A4B170D4 /* AlarmsListView.swift in Sources */,
 				45EFA46E4CF064FFCAE49F2F /* AriseApp.swift in Sources */,
 				B6C0CFB60418AD5B9CE17BED /* AriseButton.swift in Sources */,
 				41D18652CF4EBAA4E2A30368 /* AriseCard.swift in Sources */,
+				7A7E52012E3EDB2F00B607A3 /* CollapsibleSection.swift in Sources */,
 				52ADF2C94FD8A558C67CE4D5 /* AriseNavigationBar.swift in Sources */,
 				7A287EE12E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift in Sources */,
 				7A287EE22E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift in Sources */,
+				7A7E51FA2E3ED7BB00B607A3 /* FloatingActionButton.swift in Sources */,
 				7A287EE32E3ECF6D00CC1CB8 /* AriseDataModel.xcdatamodeld in Sources */,
 				7A287EE42E3ECF6D00CC1CB8 /* Alarm+CoreDataProperties.swift in Sources */,
 				7A287EE52E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataProperties.swift in Sources */,
@@ -375,9 +428,12 @@
 				7832163D09B0A090FE72ED45 /* Colors.swift in Sources */,
 				F20AA44FCBBC49CBBFDF1F56 /* ContentView.swift in Sources */,
 				B0AADF6650280914A586978F /* MainTabView.swift in Sources */,
+				7A7E51FD2E3ED87900B607A3 /* AlarmCardView.swift in Sources */,
 				BC0CB3230CF88587144915A6 /* SettingsView.swift in Sources */,
+				7A7E52062E3EDD1C00B607A3 /* AlarmScheduler.swift in Sources */,
 				1A6C622931DD4D587171F873 /* Spacing.swift in Sources */,
 				1CA11CF08B48F7CD9D73DF7E /* Typography.swift in Sources */,
+				7A7E52032E3EDB7900B607A3 /* RepeatDaysSelector.swift in Sources */,
 				66BB49998595B4F350C83221 /* VoiceProfilesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

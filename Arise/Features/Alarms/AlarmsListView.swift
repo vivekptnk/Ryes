@@ -1,55 +1,129 @@
 import SwiftUI
+import CoreData
 
 struct AlarmsListView: View {
-    @State private var alarms: [String] = []
+    @Environment(\.managedObjectContext) private var viewContext
+    @EnvironmentObject private var alarmManager: AlarmPersistenceManager
+    @State private var showingCreateAlarm = false
+    @State private var alarmToEdit: Alarm?
+    
+    @FetchRequest(
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Alarm.time, ascending: true)
+        ],
+        animation: .default
+    ) private var alarms: FetchedResults<Alarm>
     
     var body: some View {
         NavigationStack {
-            Group {
-                if alarms.isEmpty {
-                    ZStack {
-                        Color(.systemGroupedBackground)
-                            .ignoresSafeArea()
-                        
-                        VStack(spacing: AriseSpacing.large) {
-                            Image(systemName: "alarm")
-                                .font(.system(size: 60))
-                                .foregroundColor(.arisePrimaryFallback)
-                            
-                            VStack(spacing: AriseSpacing.small) {
-                                Text("No Alarms")
-                                    .ariseTitleFont()
-                                    .fontWeight(.semibold)
-                                
-                                Text("Tap the + button to create your first alarm")
-                                    .ariseBodyFont()
-                                    .foregroundColor(.secondary)
-                                    .multilineTextAlignment(.center)
-                            }
+            ZStack {
+                Color(.systemGroupedBackground)
+                    .ignoresSafeArea()
+                
+                Group {
+                    if alarms.isEmpty {
+                        EmptyAlarmsView()
+                    } else {
+                        AlarmsList(alarms: alarms, alarmToEdit: $alarmToEdit)
+                    }
+                }
+                
+                // Floating Action Button
+                VStack {
+                    Spacer()
+                    HStack {
+                        Spacer()
+                        FloatingActionButton {
+                            showingCreateAlarm = true
                         }
-                        .padding()
+                        .padding(.trailing, AriseSpacing.medium)
+                        .padding(.bottom, AriseSpacing.medium)
                     }
-                } else {
-                    List(alarms, id: \.self) { alarm in
-                        Text(alarm)
-                    }
-                    .listStyle(.insetGrouped)
-                    .scrollContentBackground(.hidden)
-                    .background(Color(.systemGroupedBackground))
                 }
             }
             .navigationTitle("Alarms")
             .navigationBarTitleDisplayMode(.large)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        // TODO: Navigate to alarm creation
-                    }) {
-                        Image(systemName: "plus")
-                            .font(.system(size: 17, weight: .medium))
-                    }
+        }
+        .sheet(isPresented: $showingCreateAlarm) {
+            AlarmEditView()
+                .environment(\.managedObjectContext, viewContext)
+                .environmentObject(alarmManager)
+        }
+        .sheet(item: $alarmToEdit) { alarm in
+            AlarmEditView(alarm: alarm)
+                .environment(\.managedObjectContext, viewContext)
+                .environmentObject(alarmManager)
+        }
+    }
+}
+
+// MARK: - Empty State View
+private struct EmptyAlarmsView: View {
+    var body: some View {
+        VStack(spacing: AriseSpacing.large) {
+            Image(systemName: "alarm")
+                .font(.system(size: 60))
+                .foregroundColor(.arisePrimaryFallback)
+            
+            VStack(spacing: AriseSpacing.small) {
+                Text("No Alarms")
+                    .ariseTitleFont()
+                    .fontWeight(.semibold)
+                
+                Text("Tap the + button to create your first alarm")
+                    .ariseBodyFont()
+                    .foregroundColor(.secondary)
+                    .multilineTextAlignment(.center)
+            }
+        }
+        .padding()
+    }
+}
+
+// MARK: - Alarms List
+private struct AlarmsList: View {
+    let alarms: FetchedResults<Alarm>
+    @Binding var alarmToEdit: Alarm?
+    @EnvironmentObject private var alarmManager: AlarmPersistenceManager
+    @State private var alarmToDelete: Alarm?
+    @State private var showingDeleteAlert = false
+    
+    var body: some View {
+        ScrollView {
+            LazyVStack(spacing: AriseSpacing.small) {
+                ForEach(alarms) { alarm in
+                    AlarmCardView(
+                        alarm: alarm,
+                        onTap: {
+                            alarmToEdit = alarm
+                        },
+                        onDelete: {
+                            alarmToDelete = alarm
+                            showingDeleteAlert = true
+                        }
+                    )
+                    .transition(.asymmetric(
+                        insertion: AnyTransition.scale.combined(with: .opacity),
+                        removal: AnyTransition.scale.combined(with: .opacity)
+                    ))
                 }
             }
+            .padding(.horizontal, AriseSpacing.medium)
+            .padding(.vertical, AriseSpacing.small)
+        }
+        .background(Color(.systemGroupedBackground))
+        .alert("Delete Alarm?", isPresented: $showingDeleteAlert) {
+            Button("Cancel", role: .cancel) {
+                alarmToDelete = nil
+            }
+            Button("Delete", role: .destructive) {
+                if let alarm = alarmToDelete {
+                    alarmManager.deleteAlarmWithScheduling(alarm)
+                    alarmToDelete = nil
+                }
+            }
+        } message: {
+            Text("This action cannot be undone.")
         }
     }
 }
