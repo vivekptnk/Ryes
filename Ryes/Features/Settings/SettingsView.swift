@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct SettingsView: View {
+    @State private var showAPIKeyTest = false
+    @State private var testAPIKey = ""
+    
     var body: some View {
         NavigationStack {
             Form {
@@ -18,6 +21,14 @@ struct SettingsView: View {
                     
                     NavigationLink(destination: Text("Sleep Tracking Settings")) {
                         Label("Sleep Tracking", systemImage: "bed.double")
+                    }
+                    
+                    NavigationLink(destination: Text("Voice Synthesis Settings - Coming Soon")) {
+                        Label("Voice Synthesis", systemImage: "speaker.wave.2")
+                    }
+                    
+                    NavigationLink(destination: ElevenLabsTestView()) {
+                        Label("Test ElevenLabs Integration", systemImage: "waveform")
                     }
                 }
                 

@@ -8,6 +8,11 @@ struct RyesApp: App {
     @StateObject private var backgroundAudioService = BackgroundAudioService.shared
     
     init() {
+        // Run API test to verify initialization works (only in DEBUG mode)
+        #if DEBUG
+        SimpleAPITest.testInit()
+        #endif
+        
         // Configure navigation bar appearance
         let appearance = UINavigationBarAppearance()
         appearance.configureWithDefaultBackground()

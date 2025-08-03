@@ -45,6 +45,15 @@
 		7AABA37B2E3F11FF00DF9F44 /* BackgroundHealthMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA37A2E3F11FF00DF9F44 /* BackgroundHealthMonitorTests.swift */; };
 		7AABA37C2E3F11FF00DF9F44 /* BackgroundExecutionIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3792E3F11FF00DF9F44 /* BackgroundExecutionIntegrationTests.swift */; };
 		7AABA37D2E3F11FF00DF9F44 /* BackgroundAudioServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3782E3F11FF00DF9F44 /* BackgroundAudioServiceTests.swift */; };
+		7AABA3812E3F146B00DF9F44 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3802E3F146B00DF9F44 /* KeychainManager.swift */; };
+		7AABA3822E3F146B00DF9F44 /* ElevenLabsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA37E2E3F146B00DF9F44 /* ElevenLabsError.swift */; };
+		7AABA3832E3F146B00DF9F44 /* ElevenLabsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA37F2E3F146B00DF9F44 /* ElevenLabsModels.swift */; };
+		7AABA3852E3F14A100DF9F44 /* ElevenLabsAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3842E3F14A100DF9F44 /* ElevenLabsAPIClient.swift */; };
+		7AABA3872E3F150500DF9F44 /* VoiceSynthesisService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3862E3F150500DF9F44 /* VoiceSynthesisService.swift */; };
+		7AABA3892E3F153200DF9F44 /* ElevenLabsIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA3882E3F153200DF9F44 /* ElevenLabsIntegrationTests.swift */; };
+		7AABA38B2E3F15AF00DF9F44 /* ElevenLabsSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA38A2E3F15AF00DF9F44 /* ElevenLabsSettingsView.swift */; };
+		7AABA38D2E3F1A6200DF9F44 /* ElevenLabsTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA38C2E3F1A6200DF9F44 /* ElevenLabsTestView.swift */; };
+		7AABA38F2E3F1D5500DF9F44 /* SimpleAPITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AABA38E2E3F1D5500DF9F44 /* SimpleAPITest.swift */; };
 		987839816367DA67A4B170D4 /* AlarmsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE7EB28C79DCB1EB05A46CD /* AlarmsListView.swift */; };
 		B0AADF6650280914A586978F /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1787A0FB5135038DC9276AB /* MainTabView.swift */; };
 		B6C0CFB60418AD5B9CE17BED /* RyesButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D25B0DEA6504C0A145897 /* RyesButton.swift */; };
@@ -110,6 +119,15 @@
 		7AABA3782E3F11FF00DF9F44 /* BackgroundAudioServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundAudioServiceTests.swift; sourceTree = "<group>"; };
 		7AABA3792E3F11FF00DF9F44 /* BackgroundExecutionIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundExecutionIntegrationTests.swift; sourceTree = "<group>"; };
 		7AABA37A2E3F11FF00DF9F44 /* BackgroundHealthMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundHealthMonitorTests.swift; sourceTree = "<group>"; };
+		7AABA37E2E3F146B00DF9F44 /* ElevenLabsError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsError.swift; sourceTree = "<group>"; };
+		7AABA37F2E3F146B00DF9F44 /* ElevenLabsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsModels.swift; sourceTree = "<group>"; };
+		7AABA3802E3F146B00DF9F44 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		7AABA3842E3F14A100DF9F44 /* ElevenLabsAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsAPIClient.swift; sourceTree = "<group>"; };
+		7AABA3862E3F150500DF9F44 /* VoiceSynthesisService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceSynthesisService.swift; sourceTree = "<group>"; };
+		7AABA3882E3F153200DF9F44 /* ElevenLabsIntegrationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsIntegrationTests.swift; sourceTree = "<group>"; };
+		7AABA38A2E3F15AF00DF9F44 /* ElevenLabsSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsSettingsView.swift; sourceTree = "<group>"; };
+		7AABA38C2E3F1A6200DF9F44 /* ElevenLabsTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElevenLabsTestView.swift; sourceTree = "<group>"; };
+		7AABA38E2E3F1D5500DF9F44 /* SimpleAPITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleAPITest.swift; sourceTree = "<group>"; };
 		88FA5B2C8CDCE8AED689B05F /* RyesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RyesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		94FED55CBBBC4070A1E080AA /* RyesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RyesApp.swift; sourceTree = "<group>"; };
 		9887EF74F24F8244A813AFF9 /* RyesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RyesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,6 +150,7 @@
 				7AABA3782E3F11FF00DF9F44 /* BackgroundAudioServiceTests.swift */,
 				7AABA3792E3F11FF00DF9F44 /* BackgroundExecutionIntegrationTests.swift */,
 				7AABA37A2E3F11FF00DF9F44 /* BackgroundHealthMonitorTests.swift */,
+				7AABA3882E3F153200DF9F44 /* ElevenLabsIntegrationTests.swift */,
 				4D2FC8AF7EDFF047A499D87B /* RyesTests.swift */,
 				7AABA3702E3F010A00DF9F44 /* NotificationSchedulingTests.swift */,
 				7AABA3722E3F011500DF9F44 /* NotificationQueueTests.swift */,
@@ -179,6 +198,8 @@
 		46C17CB18D4F04508E0120E1 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA38C2E3F1A6200DF9F44 /* ElevenLabsTestView.swift */,
+				7AABA38A2E3F15AF00DF9F44 /* ElevenLabsSettingsView.swift */,
 				116D42BB7CF35C2D5B416771 /* SettingsView.swift */,
 			);
 			path = Settings;
@@ -266,9 +287,15 @@
 		7A7E52052E3EDD1C00B607A3 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				7AABA3862E3F150500DF9F44 /* VoiceSynthesisService.swift */,
 				7AABA3762E3F102500DF9F44 /* BackgroundHealthMonitor.swift */,
 				7AABA3562E3EF97900DF9F44 /* NotificationManager.swift */,
+				7AABA3842E3F14A100DF9F44 /* ElevenLabsAPIClient.swift */,
 				7AABA3742E3F100F00DF9F44 /* BackgroundAudioService.swift */,
+				7AABA38E2E3F1D5500DF9F44 /* SimpleAPITest.swift */,
+				7AABA37E2E3F146B00DF9F44 /* ElevenLabsError.swift */,
+				7AABA37F2E3F146B00DF9F44 /* ElevenLabsModels.swift */,
+				7AABA3802E3F146B00DF9F44 /* KeychainManager.swift */,
 				7A7E52042E3EDD1C00B607A3 /* AlarmScheduler.swift */,
 				7AABA36C2E3F006F00DF9F44 /* NotificationQueueManager.swift */,
 			);
@@ -486,7 +513,13 @@
 				7A7E52012E3EDB2F00B607A3 /* CollapsibleSection.swift in Sources */,
 				7AABA3572E3EF97900DF9F44 /* NotificationManager.swift in Sources */,
 				52ADF2C94FD8A558C67CE4D5 /* RyesNavigationBar.swift in Sources */,
+				7AABA3812E3F146B00DF9F44 /* KeychainManager.swift in Sources */,
+				7AABA38B2E3F15AF00DF9F44 /* ElevenLabsSettingsView.swift in Sources */,
+				7AABA3872E3F150500DF9F44 /* VoiceSynthesisService.swift in Sources */,
+				7AABA3822E3F146B00DF9F44 /* ElevenLabsError.swift in Sources */,
+				7AABA3832E3F146B00DF9F44 /* ElevenLabsModels.swift in Sources */,
 				7AABA3772E3F102500DF9F44 /* BackgroundHealthMonitor.swift in Sources */,
+				7AABA38F2E3F1D5500DF9F44 /* SimpleAPITest.swift in Sources */,
 				7A287EE12E3ECF6D00CC1CB8 /* Alarm+CoreDataClass.swift in Sources */,
 				7A287EE22E3ECF6D00CC1CB8 /* VoiceProfile+CoreDataClass.swift in Sources */,
 				7A7E51FA2E3ED7BB00B607A3 /* FloatingActionButton.swift in Sources */,
@@ -502,7 +535,9 @@
 				7A7E51FD2E3ED87900B607A3 /* AlarmCardView.swift in Sources */,
 				BC0CB3230CF88587144915A6 /* SettingsView.swift in Sources */,
 				7A7E52062E3EDD1C00B607A3 /* AlarmScheduler.swift in Sources */,
+				7AABA38D2E3F1A6200DF9F44 /* ElevenLabsTestView.swift in Sources */,
 				1A6C622931DD4D587171F873 /* Spacing.swift in Sources */,
+				7AABA3852E3F14A100DF9F44 /* ElevenLabsAPIClient.swift in Sources */,
 				7AABA3752E3F100F00DF9F44 /* BackgroundAudioService.swift in Sources */,
 				7AABA35C2E3EF9A300DF9F44 /* NotificationPermissionView.swift in Sources */,
 				1CA11CF08B48F7CD9D73DF7E /* Typography.swift in Sources */,
@@ -522,6 +557,7 @@
 				7AABA37D2E3F11FF00DF9F44 /* BackgroundAudioServiceTests.swift in Sources */,
 				7AABA3652E3EF9CD00DF9F44 /* NotificationManagerTests.swift in Sources */,
 				7AABA3662E3EF9CD00DF9F44 /* CoreDataTests.swift in Sources */,
+				7AABA3892E3F153200DF9F44 /* ElevenLabsIntegrationTests.swift in Sources */,
 				D1BF486719198477BA89C1E3 /* RyesTests.swift in Sources */,
 				7AABA3732E3F011500DF9F44 /* NotificationQueueTests.swift in Sources */,
 			);
