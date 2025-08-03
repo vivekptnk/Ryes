@@ -25,8 +25,8 @@ jobs:
     - name: Build for iOS Simulator
       run: |
         xcodebuild build \
-          -project Arise.xcodeproj \
-          -scheme Arise \
+          -project Ryes.xcodeproj \
+          -scheme Ryes \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
           | xcbeautify
@@ -34,8 +34,8 @@ jobs:
     - name: Run Tests
       run: |
         xcodebuild test \
-          -project Arise.xcodeproj \
-          -scheme Arise \
+          -project Ryes.xcodeproj \
+          -scheme Ryes \
           -sdk iphonesimulator \
           -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=latest' \
           -resultBundlePath TestResults \

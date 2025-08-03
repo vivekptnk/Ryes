@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Arise is an AI-powered iOS alarm application built with SwiftUI that transforms the wake-up experience through:
+Ryes is an AI-powered iOS alarm application built with SwiftUI that transforms the wake-up experience through:
 - AI voice synthesis using ElevenLabs for personalized wake-up messages
 - Mission-based dismissal mechanisms (math puzzles, photo challenges, QR scanning)
 - Deep iOS ecosystem integration (HealthKit, Calendar, Apple Watch)
@@ -15,23 +15,23 @@ Arise is an AI-powered iOS alarm application built with SwiftUI that transforms 
 ### Build and Run
 ```bash
 # Build the project
-xcodebuild -project Arise.xcodeproj -scheme Arise -configuration Debug build
+xcodebuild -project Ryes.xcodeproj -scheme Ryes -configuration Debug build
 
 # Run on simulator
 xcrun simctl boot "iPhone 15 Pro"
-xcodebuild -project Arise.xcodeproj -scheme Arise -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -configuration Debug
+xcodebuild -project Ryes.xcodeproj -scheme Ryes -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -configuration Debug
 
 # Run on device (requires provisioning profile)
-xcodebuild -project Arise.xcodeproj -scheme Arise -destination 'platform=iOS,name=Your Device Name' -configuration Debug
+xcodebuild -project Ryes.xcodeproj -scheme Ryes -destination 'platform=iOS,name=Your Device Name' -configuration Debug
 ```
 
 ### Testing
 ```bash
 # Run all tests
-xcodebuild test -project Arise.xcodeproj -scheme Arise -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
+xcodebuild test -project Ryes.xcodeproj -scheme Ryes -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 
 # Run specific test
-xcodebuild test -project Arise.xcodeproj -scheme Arise -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -only-testing:AriseTests/AriseTests/example
+xcodebuild test -project Ryes.xcodeproj -scheme Ryes -destination 'platform=iOS Simulator,name=iPhone 15 Pro' -only-testing:RyesTests/RyesTests/example
 ```
 
 ### Code Quality
@@ -46,9 +46,9 @@ swiftlint
 ## Architecture
 
 ### Project Structure
-- **Arise/**: Main iOS app target containing SwiftUI views and app logic
-- **AriseTests/**: Unit tests using Swift Testing framework
-- **AriseUITests/**: UI automation tests
+- **Ryes/**: Main iOS app target containing SwiftUI views and app logic
+- **RyesTests/**: Unit tests using Swift Testing framework
+- **RyesUITests/**: UI automation tests
 - **docs/**: Technical documentation including the comprehensive PRD
 
 ### Key Technical Components
@@ -130,6 +130,7 @@ When working on this project:
 2. Create tasks for any new features or significant changes
 3. Update task status as you complete work
 4. Link commits to task IDs for traceability
+5. Add Tests to Each Task 
 
 ### Commit Strategy for Subtasks
 **Important**: After completing each subtask from tasks.json:

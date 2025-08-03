@@ -1,6 +1,6 @@
-# Arise - AI-Powered Alarm App
+# Ryes - AI-Powered Alarm App
 
-Arise is an innovative iOS alarm application that transforms the wake-up experience through AI voice synthesis, mission-based dismissal mechanisms, and deep iOS ecosystem integration.
+Ryes is an innovative iOS alarm application that transforms the wake-up experience through AI voice synthesis, mission-based dismissal mechanisms, and deep iOS ecosystem integration.
 
 ## Features
 
@@ -21,13 +21,13 @@ Arise is an innovative iOS alarm application that transforms the wake-up experie
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/arise.git
-cd arise
+git clone https://github.com/vivekptnk/ryes.git
+cd ryes
 ```
 
 2. Open the project in Xcode:
 ```bash
-open Arise.xcodeproj
+open Ryes.xcodeproj
 ```
 
 3. Build and run the project (⌘+R)
@@ -35,15 +35,15 @@ open Arise.xcodeproj
 ## Project Structure
 
 ```
-Arise/
-├── Arise/                 # Main iOS app
+Ryes/
+├── Ryes/                 # Main iOS app
 │   ├── App/              # App lifecycle and configuration
 │   ├── Core/             # Core data models and services
 │   ├── Features/         # Feature modules
 │   ├── Resources/        # Assets and resources
 │   └── Shared/           # Shared utilities and extensions
-├── AriseTests/           # Unit tests
-├── AriseUITests/         # UI tests
+├── RyesTests/           # Unit tests
+├── RyesUITests/         # UI tests
 └── docs/                 # Technical documentation
 ```
 
@@ -52,13 +52,13 @@ Arise/
 ### Building
 
 ```bash
-xcodebuild -project Arise.xcodeproj -scheme Arise -configuration Debug build
+xcodebuild -project Ryes.xcodeproj -scheme Ryes -configuration Debug build
 ```
 
 ### Testing
 
 ```bash
-xcodebuild test -project Arise.xcodeproj -scheme Arise -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
+xcodebuild test -project Ryes.xcodeproj -scheme Ryes -destination 'platform=iOS Simulator,name=iPhone 16 Pro'
 ```
 
 ### Code Quality
