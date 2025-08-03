@@ -18,7 +18,8 @@ struct MainTabView: View {
                     Label("Settings", systemImage: "gear")
                 }
         }
-        .tint(.ryesPrimaryFallback)
+        .tint(.ryesPrimary)
+        .notificationPermission()
     }
 }
 

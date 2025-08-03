@@ -6,6 +6,7 @@ struct AlarmsListView: View {
     @EnvironmentObject private var alarmManager: AlarmPersistenceManager
     @State private var showingCreateAlarm = false
     @State private var alarmToEdit: Alarm?
+    @State private var showingPermissionView = false
     
     @FetchRequest(
         sortDescriptors: [
@@ -34,7 +35,7 @@ struct AlarmsListView: View {
                     HStack {
                         Spacer()
                         FloatingActionButton {
-                            showingCreateAlarm = true
+                            checkPermissionAndCreateAlarm()
                         }
                         .padding(.trailing, RyesSpacing.medium)
                         .padding(.bottom, RyesSpacing.medium)
@@ -54,6 +55,31 @@ struct AlarmsListView: View {
                 .environment(\.managedObjectContext, viewContext)
                 .environmentObject(alarmManager)
         }
+        .sheet(isPresented: $showingPermissionView) {
+            NotificationPermissionView()
+        }
+    }
+    
+    // MARK: - Helper Methods
+    private func checkPermissionAndCreateAlarm() {
+        NotificationManager.shared.checkAuthorizationStatus { status in
+            switch status {
+            case .authorized, .provisional:
+                showingCreateAlarm = true
+            case .denied:
+                showingPermissionView = true
+            case .notDetermined:
+                NotificationManager.shared.requestAuthorization { granted, _ in
+                    if granted {
+                        showingCreateAlarm = true
+                    } else {
+                        showingPermissionView = true
+                    }
+                }
+            @unknown default:
+                showingPermissionView = true
+            }
+        }
     }
 }
 
@@ -63,7 +89,7 @@ private struct EmptyAlarmsView: View {
         VStack(spacing: RyesSpacing.large) {
             Image(systemName: "alarm")
                 .font(.system(size: 60))
-                .foregroundColor(.ryesPrimaryFallback)
+                .foregroundColor(.ryesPrimary)
             
             VStack(spacing: RyesSpacing.small) {
                 Text("No Alarms")
